@@ -1,5 +1,14 @@
 {
-  "__inputs": [],
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
   "__requires": [
     {
       "type": "grafana",
@@ -12,6 +21,12 @@
       "id": "graph",
       "name": "Graph",
       "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "1.0.0"
     },
     {
       "type": "panel",
@@ -37,12 +52,12 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1619629215336,
+  "iteration": 1620067993743,
   "links": [],
   "panels": [
     {
       "aliasColors": {},
-      "bars": false,
+      "bars": true,
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
@@ -82,8 +97,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:110",
-          "alias": "/validator_inconsensus/",
+          "alias": "concensus",
           "bars": true,
           "color": "rgb(27, 59, 20)",
           "stack": false,
@@ -97,17 +111,18 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "validator_ledger{subtype!=\"total\"}\n",
+          "expr": "validator_ledger{subtype!=\"total\", validator=\"$validator\"}\n",
+          "instant": false,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "penalty-{{subtype}}",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "validator_inconsensus  ",
+          "expr": "validator_inconsensus{validator=\"$validator\"}",
           "hide": false,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "concensus",
           "refId": "B"
         }
       ],
@@ -131,11 +146,12 @@
       },
       "yaxes": [
         {
+          "decimals": 0,
           "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -144,7 +160,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -221,7 +237,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "validator_version_info",
+          "expr": "validator_version_info{validator=\"$validator\"}",
           "format": "table",
           "instant": false,
           "interval": "",
@@ -308,9 +324,9 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "validator_sessions",
+          "expr": "validator_sessions{validator=\"$validator\"}",
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "sessions",
           "refId": "A"
         }
       ],
@@ -342,11 +358,12 @@
           "show": true
         },
         {
+          "decimals": 0,
           "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         }
       ],
@@ -402,9 +419,9 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "validator_block_age",
+          "expr": "validator_block_age{validator=\"$validator\"}",
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "block age",
           "refId": "A"
         }
       ],
@@ -502,9 +519,6 @@
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
-        {
-          "$$hashKey": "object:1863"
-        }
       ],
       "spaceLength": 10,
       "stack": false,
@@ -512,9 +526,9 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "validator_connections",
+          "expr": "validator_connections{validator=\"$validator\"}",
           "interval": "1",
-          "legendFormat": "",
+          "legendFormat": "connections",
           "refId": "A"
         }
       ],
@@ -538,7 +552,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1874",
+          "decimals": 0,
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -547,7 +561,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1875",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -587,6 +600,33 @@
         "regex": "",
         "skipUrlSync": false,
         "type": "datasource"
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "${DS_PROMETHEUS}",
+        "definition": "label_values(validator)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "validator",
+        "options": [],
+        "query": {
+          "query": "label_values(validator)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 5,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },
@@ -596,7 +636,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "miner stats",
+  "title": "Validator stats",
   "uid": "9QGTpK9Mz",
-  "version": 9
+  "version": 10
 }

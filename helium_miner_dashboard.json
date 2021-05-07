@@ -50,9 +50,9 @@
   },
   "editable": true,
   "gnetId": null,
-  "graphTooltip": 0,
+  "graphTooltip": 1,
   "id": null,
-  "iteration": 1620418662051,
+  "iteration": 1620419857642,
   "links": [],
   "panels": [
     {
@@ -1053,5 +1053,5 @@
   "timezone": "",
   "title": "Validator stats",
   "uid": "9QGTpK9Mz",
-  "version": 52
+  "version": 53
 }

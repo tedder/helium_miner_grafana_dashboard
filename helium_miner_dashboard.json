@@ -52,7 +52,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1620419857642,
+  "iteration": 1620506844193,
   "links": [],
   "panels": [
     {
@@ -392,11 +392,12 @@
       },
       "yaxes": [
         {
+          "decimals": 0,
           "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -449,7 +450,7 @@
       "options": {
         "alertThreshold": true
       },
-      "percentage": false,
+      "percentage": true,
       "pluginVersion": "7.5.5",
       "pointradius": 2,
       "points": false,
@@ -461,9 +462,9 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "rate(node_disk_io_time_seconds_total{instance=\"$server_name\"}[15m])",
+          "expr": "irate(node_disk_io_time_seconds_total{instance=\"$server_name\"}[15m]) * 100",
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "{{device}}",
           "refId": "A"
         }
       ],
@@ -471,7 +472,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "disk util",
+      "title": "disk utilization",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -487,11 +488,12 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "decimals": 0,
+          "format": "percent",
           "label": null,
           "logBase": 1,
-          "max": null,
-          "min": null,
+          "max": "100",
+          "min": "0",
           "show": true
         },
         {
@@ -500,7 +502,7 @@
           "logBase": 1,
           "max": null,
           "min": null,
-          "show": true
+          "show": false
         }
       ],
       "yaxis": {
@@ -562,14 +564,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "rate(node_disk_io_time_weighted_seconds_total{instance=\"$server_name\",device!~\"^sd[ab]\"}[5m])",
+          "expr": "rate(node_disk_io_time_weighted_seconds_total{instance=\"$server_name\",device!~\"^sd[ab]\"}[2m])",
           "interval": "",
-          "legendFormat": "io seconds {{device}}",
+          "legendFormat": "queue len {{device}}",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "rate(node_disk_write_time_seconds_total{instance=\"$server_name\",device!~\"^sd[ab]\"}[15m])/rate(node_disk_writes_completed_total{instance=\"$server_name\",device!~\"^sd[ab]\"}[15m])",
+          "expr": "rate(node_disk_write_time_seconds_total{instance=\"$server_name\",device!~\"^sd[ab]\"}[2m])/rate(node_disk_writes_completed_total{instance=\"$server_name\",device!~\"^sd[ab]\"}[2m])",
           "hide": false,
           "interval": "",
           "legendFormat": "latency {{device}}",
@@ -597,18 +599,18 @@
       "yaxes": [
         {
           "format": "short",
-          "label": null,
+          "label": "sec",
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
           "format": "short",
-          "label": null,
+          "label": "sec",
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         }
       ],
@@ -783,7 +785,7 @@
           "exemplar": true,
           "expr": "node_load1{instance=\"$server_name\"}",
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "load1",
           "refId": "A"
         },
         {
@@ -791,7 +793,7 @@
           "expr": "node_load5{instance=\"$server_name\"}",
           "hide": false,
           "interval": "",
-          "legendFormat": "",
+          "legendFormat": "load5",
           "refId": "B"
         },
         {
@@ -827,7 +829,7 @@
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1053,5 +1055,5 @@
   "timezone": "",
   "title": "Validator stats",
   "uid": "9QGTpK9Mz",
-  "version": 53
+  "version": 54
 }

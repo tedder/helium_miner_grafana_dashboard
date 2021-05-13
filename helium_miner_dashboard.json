@@ -1009,7 +1009,7 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/^\\w+-\\w+-\\w+$/",
         "skipUrlSync": false,
         "sort": 5,
         "tagValuesQuery": "",

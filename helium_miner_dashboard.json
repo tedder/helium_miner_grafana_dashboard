@@ -49,10 +49,10 @@
     ]
   },
   "editable": true,
-  "gnetId": null,
+  "gnetId": 14319,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1620595110901,
+  "iteration": 1621305361677,
   "links": [],
   "panels": [
     {
@@ -661,10 +661,12 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:703",
           "alias": "/fan/",
           "yaxis": 2
         },
         {
+          "$$hashKey": "object:704",
           "alias": "/temp/",
           "color": "#C4162A",
           "linewidth": 2
@@ -686,7 +688,7 @@
           "expr": "max(node_ipmi_speed_rpm{instance=~\"$server_name:.*\"})",
           "hide": false,
           "interval": "",
-          "legendFormat": "max fan",
+          "legendFormat": "max fan rpm",
           "refId": "B"
         }
       ],
@@ -710,7 +712,8 @@
       },
       "yaxes": [
         {
-          "format": "short",
+          "$$hashKey": "object:719",
+          "format": "celsius",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -718,7 +721,8 @@
           "show": true
         },
         {
-          "format": "short",
+          "$$hashKey": "object:720",
+          "format": "rotrpm",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -742,7 +746,7 @@
         "overrides": []
       },
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 4,
       "gridPos": {
         "h": 8,
         "w": 11,
@@ -773,8 +777,26 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:195",
           "alias": "/mem/",
+          "fill": 0,
+          "fillGradient": 0,
+          "linewidth": 2,
           "yaxis": 2
+        },
+        {
+          "$$hashKey": "object:402",
+          "alias": "load1",
+          "fill": 1,
+          "fillGradient": 0
+        },
+        {
+          "$$hashKey": "object:459",
+          "alias": "load5",
+          "bars": false,
+          "fillGradient": 10,
+          "lines": true,
+          "zindex": -1
         }
       ],
       "spaceLength": 10,
@@ -798,11 +820,11 @@
         },
         {
           "exemplar": true,
-          "expr": "node_memory_MemFree_bytes{instance=~\"$server_name:.*\"}/(1024^3)",
+          "expr": "(node_memory_MemAvailable_bytes{instance=~\"$server_name:.*\"})/(1024^3)",
           "hide": false,
           "interval": "",
-          "legendFormat": "free mem",
-          "refId": "C"
+          "legendFormat": "avail mem",
+          "refId": "D"
         }
       ],
       "thresholds": [],
@@ -825,6 +847,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:67",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -833,6 +856,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:68",
           "format": "decgbytes",
           "label": "",
           "logBase": 1,
@@ -888,7 +912,8 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "alias": "/speed/",
+          "$$hashKey": "object:635",
+          "alias": "/core speed/",
           "color": "rgb(82, 51, 51)",
           "fill": 0,
           "yaxis": 2,
@@ -919,8 +944,16 @@
           "expr": "max(node_cpu_scaling_frequency_hertz{instance=~\"$server_name:.*\"})",
           "hide": false,
           "interval": "",
-          "legendFormat": "core speed",
+          "legendFormat": "max core speed",
           "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "min(node_cpu_scaling_frequency_hertz{instance=~\"$server_name:.*\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "min core speed",
+          "refId": "D"
         }
       ],
       "thresholds": [],
@@ -943,19 +976,21 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:648",
           "format": "short",
           "label": "MB",
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
+          "$$hashKey": "object:649",
           "format": "rothz",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         }
       ],
@@ -1048,12 +1083,12 @@
     ]
   },
   "time": {
-    "from": "now-12h",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Validator stats",
   "uid": "9QGTpK9Mz",
-  "version": 54
+  "version": 67
 }

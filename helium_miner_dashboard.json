@@ -45,6 +45,15 @@
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
         "type": "dashboard"
+      },
+      {
+        "datasource": "${DS_PROMETHEUS}",
+        "enable": true,
+        "expr": "resets(validator_container_uptime{state_type=\"start\",validator_name=\"$validator\"}[5m])",
+        "hide": false,
+        "iconColor": "rgba(255, 96, 96, 1)",
+        "name": "miner restart",
+        "showIn": 0
       }
     ]
   },
@@ -52,7 +61,7 @@
   "gnetId": 14319,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1621305361677,
+  "iteration": 1621578936334,
   "links": [],
   "panels": [
     {
@@ -1090,5 +1099,5 @@
   "timezone": "",
   "title": "Validator stats",
   "uid": "9QGTpK9Mz",
-  "version": 67
+  "version": 68
 }

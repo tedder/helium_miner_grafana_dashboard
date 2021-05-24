@@ -675,7 +675,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{instance=~\"$server_name:.*\", mode=\"idle\"}[1m])) * 100)",
+          "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{instance=~\"$server_name:.*\", mode=\"idle\"}[2m])) * 100)",
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "usage",
@@ -771,7 +771,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "avg by (instance) (rate(node_cpu_seconds_total{instance=~\"$server_name:.*\", mode=\"steal\"}[1m])) * 100",
+          "expr": "avg by (instance) (rate(node_cpu_seconds_total{instance=~\"$server_name:.*\", mode=\"steal\"}[2m])) * 100",
           "interval": "",
           "intervalFactor": 2,
           "legendFormat": "steal",

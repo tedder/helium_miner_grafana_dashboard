@@ -61,7 +61,7 @@
   "gnetId": 14319,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1621701738768,
+  "iteration": 1622933741791,
   "links": [],
   "panels": [
     {
@@ -108,6 +108,7 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:68",
           "alias": "consensus",
           "bars": false,
           "color": "#1F60C4",
@@ -118,6 +119,17 @@
           "stack": false,
           "yaxis": 2,
           "zindex": -3
+        },
+        {
+          "$$hashKey": "object:91",
+          "alias": "/heartbeat/",
+          "bars": false,
+          "color": "#3274D9",
+          "fill": 0,
+          "fillGradient": 0,
+          "lines": true,
+          "linewidth": 2,
+          "stack": false
         }
       ],
       "spaceLength": 10,
@@ -126,7 +138,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "validator_ledger{subtype!=\"total\", validator_name=\"$validator\"}",
+          "expr": "validator_ledger{subtype!=\"total\",subtype!=\"last_heartbeat\", validator_name=\"$validator\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "penalty-{{subtype}}",
@@ -139,6 +151,14 @@
           "interval": "",
           "legendFormat": "consensus",
           "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "validator_block_age{resource_type=\"last_heartbeat\",validator_name=\"$validator\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{resource_type}}",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -683,7 +703,9 @@
         }
       ],
       "thresholds": [],
+      "timeFrom": null,
       "timeRegions": [],
+      "timeShift": null,
       "title": "CPU Usage",
       "tooltip": {
         "shared": true,
@@ -700,6 +722,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:116",
           "decimals": 0,
           "format": "percent",
           "label": "",
@@ -709,6 +732,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:117",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -807,6 +831,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:194",
           "decimals": 0,
           "format": "percent",
           "label": "",
@@ -816,6 +841,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:195",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -1299,6 +1325,6 @@
   "timepicker": {},
   "timezone": "",
   "title": "Validator stats",
-  "uid": "9QGTpK9Mz",
-  "version": 69
+  "uid": "9QGTpK9M3",
+  "version": 70
 }

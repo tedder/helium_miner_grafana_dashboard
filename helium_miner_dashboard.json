@@ -14,12 +14,12 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.5.5"
+      "version": "8.0.0"
     },
     {
       "type": "panel",
       "id": "graph",
-      "name": "Graph",
+      "name": "Graph (old)",
       "version": ""
     },
     {
@@ -61,7 +61,7 @@
   "gnetId": 14319,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1622933741791,
+  "iteration": 1624303272760,
   "links": [],
   "panels": [
     {
@@ -102,7 +102,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -119,17 +119,6 @@
           "stack": false,
           "yaxis": 2,
           "zindex": -3
-        },
-        {
-          "$$hashKey": "object:91",
-          "alias": "/heartbeat/",
-          "bars": false,
-          "color": "#3274D9",
-          "fill": 0,
-          "fillGradient": 0,
-          "lines": true,
-          "linewidth": 2,
-          "stack": false
         }
       ],
       "spaceLength": 10,
@@ -151,14 +140,6 @@
           "interval": "",
           "legendFormat": "consensus",
           "refId": "B"
-        },
-        {
-          "exemplar": true,
-          "expr": "validator_block_age{resource_type=\"last_heartbeat\",validator_name=\"$validator\"}",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "{{resource_type}}",
-          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -212,6 +193,7 @@
           },
           "custom": {
             "align": null,
+            "displayMode": "auto",
             "filterable": false
           },
           "mappings": [],
@@ -268,7 +250,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.0",
       "targets": [
         {
           "exemplar": true,
@@ -325,10 +307,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -355,12 +333,13 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
         {
+          "$$hashKey": "object:130",
           "alias": "/conn/",
           "bars": false,
           "fill": 0,
@@ -368,6 +347,7 @@
           "yaxis": 2
         },
         {
+          "$$hashKey": "object:131",
           "alias": "/block.age/",
           "color": "rgb(119, 122, 74)",
           "fill": 0
@@ -379,7 +359,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "validator_block_age{validator_name=\"$validator\"}",
+          "expr": "validator_block_age{validator_name=\"$validator\",resource_type=\"BlockAge\"}",
           "interval": "",
           "legendFormat": "block age",
           "refId": "A"
@@ -399,6 +379,14 @@
           "interval": "",
           "legendFormat": "connections",
           "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "validator_block_age{resource_type=\"last_heartbeat\",validator_name=\"$validator\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "last heartbeat",
+          "refId": "D"
         }
       ],
       "thresholds": [],
@@ -450,10 +438,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -480,7 +464,7 @@
         "alertThreshold": true
       },
       "percentage": true,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -545,10 +529,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -575,7 +555,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -654,10 +634,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -684,7 +660,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -754,10 +730,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -784,7 +756,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -861,10 +833,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -891,7 +859,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -977,10 +945,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 4,
       "gridPos": {
@@ -1007,7 +971,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1112,10 +1076,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1142,7 +1102,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.5.5",
+      "pluginVersion": "8.0.0",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1237,7 +1197,7 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 27,
+  "schemaVersion": 30,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1284,7 +1244,6 @@
         "skipUrlSync": false,
         "sort": 5,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -1311,7 +1270,6 @@
         "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -1326,5 +1284,5 @@
   "timezone": "",
   "title": "Validator stats",
   "uid": "9QGTpK9M3",
-  "version": 70
+  "version": 71
 }
